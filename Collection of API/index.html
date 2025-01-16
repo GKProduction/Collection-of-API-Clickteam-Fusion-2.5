@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<!-- Metadata -->
+	<title>Collection of API</title>
+	<link rel="shortcut icon" type="image/png" href="favicon.png"/>
+	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+
+	<!-- Page style -->
+	<style>
+	body {
+	/* Background */
+	background-color: #000000;
+	background: url(background.png) repeat;
+	background-size: 100%;
+
+	/* Misc */
+	text-align: center;
+	margin: 0;
+	padding: 0;
+	}
+
+	* {
+	/* Disable long-tap context menu */
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	touch-action: manipulation;
+	}
+	</style>
+
+	<!-- Fullscreen on iOS devices -->
+	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=0, width=device-width">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="HandheldFriendly" content="true">
+
+	<!-- Disable context menu -->
+	<script>
+	document.addEventListener('contextmenu', event => event.preventDefault());
+	</script>
+
+	<!-- Workaround for disable double click zoom on iOS -->
+	<script>
+	document.addEventListener('touchend', function (event) {
+	event.preventDefault();
+	$(event.target).trigger('click');
+	}, false);
+	</script>
+
+	<!-- Disable arrows keys for scrolling -->
+	<script>
+	document.addEventListener('keydown', function(event) {
+	switch(event.key) {
+	case 'ArrowUp':
+	case 'ArrowDown':
+	case 'ArrowLeft':
+	case 'ArrowRight':
+	event.preventDefault();
+	break;
+	default:
+	// Do nothing for other keys
+	break;}
+	});
+	</script>
+
+	<!--  Возвращение ответов функций для рантайма игры -->
+	<script>
+	var info_int=0;
+	var info_event=null;
+	var info_data=null;
+	<!-- function GetInt(){console.log(info_int);return info_int}; // Получить целое -->
+	<!-- function GetEvent(){console.log(info_event);return info_event}; // Получить строку -->
+	<!-- function GetData(){console.log(info_data);return info_data}; // Получить данные -->
+	function GetInt(){return info_int}; // Получить целое
+	function GetEvent(){return info_event}; // Получить строку
+	function GetData(){return info_data}; // Получить данные
+	
+	function ResetInfo(){ // Сброс
+	info_int=0;
+	info_event=null;
+	// info_data=null;
+	};
+	</script>
+
+	<!-- Yandex Games SDK -->
+
+	<script src=sdk.js></script>
+	<script src=YandexGamesSDK.js></script>
+		
+	<!-- VK Bridge SDK -->
+	<script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+	<script src="VKBridgeSDK.js"></script>
+	
+	<!-- Newgrounds API -->
+	<script src=NewgroundsAPI.js></script>
+	<script src=NewgroundsSDK.js></script>
+
+	<!-- If canvas not supported by browser -->
+	<script>
+	// Detection of old browsers that do not support the canvas element
+	// Falls back to a default page
+	if (!document.createElement("canvas").getContext)
+	{window.open("http://www.clickteam.com/html5-fallback", "_self");}
+	</script>
+
+	<!-- Loads the game runtime -->
+	<script src="data/Runtime.js"></script>
+</head>
+
+<body>
+	<!-- Canvas -->
+	<div style="display: inline-block; text-align: center">
+	<!-- Your browser does not support Canvas -->
+	<canvas id="game">
+	Your browser does not support Canvas.
+	</canvas>
+	</div>
+
+	<!-- Run the game -->
+	<script>
+	// RUNTIMESTART
+	// This is where the HTML5 runtime is actually started
+	window.addEventListener("load", windowLoaded, false);
+	function windowLoaded()
+	{
+	// Calls the runtime
+	// First parameter : name of the canvas element
+	// Second parameter : path to the cch file. Images and sounds must lay beside this file
+	new Runtime("game", "data/Collection of API.cch");
+	}
+	// RUNTIMESTARTEND
+	</script>
+</body>
+</html>
