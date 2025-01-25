@@ -1,5 +1,5 @@
-// Работа с VK Bridge SDK в старых играх GKProduction v1.0
-"use strict";
+// Collection of API - VK Bridge SDK
+// v1.0
 
 // ================ Начало ================
 // Инициализация SDK

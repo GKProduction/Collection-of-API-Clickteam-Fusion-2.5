@@ -2,7 +2,7 @@
 <html>
 <head>
 	<!-- Metadata -->
-	<title>Collection of API</title>
+	<title>Collection of API Test</title>
 	<link rel="shortcut icon" type="image/png" href="favicon.png"/>
 	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
 
@@ -68,17 +68,17 @@
 	});
 	</script>
 
-	<!--  Возвращение ответов функций для рантайма игры -->
+	<!-- Возвращение ответов функций для модуля Collection of API -->
 	<script>
 	var info_int=0;
 	var info_event=null;
 	var info_data=null;
-	<!-- function GetInt(){console.log(info_int);return info_int}; // Получить целое -->
-	<!-- function GetEvent(){console.log(info_event);return info_event}; // Получить строку -->
-	<!-- function GetData(){console.log(info_data);return info_data}; // Получить данные -->
 	function GetInt(){return info_int}; // Получить целое
 	function GetEvent(){return info_event}; // Получить строку
 	function GetData(){return info_data}; // Получить данные
+	// function GetInt(){console.log(info_int);return info_int}; // Получить целое
+	// function GetEvent(){console.log(info_event);return info_event}; // Получить строку
+	// function GetData(){console.log(info_data);return info_data}; // Получить данные
 	
 	function ResetInfo(){ // Сброс
 	info_int=0;
@@ -86,20 +86,18 @@
 	// info_data=null;
 	};
 	</script>
-
-	<!-- Yandex Games SDK -->
-
-	<script src=sdk.js></script>
-	<script src=YandexGamesSDK.js></script>
-		
-	<!-- VK Bridge SDK -->
-	<script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
-	<script src="VKBridgeSDK.js"></script>
-	
 	<!-- Newgrounds API -->
-	<script src=NewgroundsAPI.js></script>
-	<script src=NewgroundsSDK.js></script>
-
+	<script src="sdk/NewgroundsAPI.js"></script>
+	<script src="sdk/NewgroundsSDK.js"></script>
+	
+ 	<!-- VK Bridge SDK -->
+ 	<!-- <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script> -->
+	<!-- <script src="sdk/VKBridgeSDK.js"></script> -->
+	
+	<!-- Yandex Games SDK -->
+	<!-- <script src="sdk.js"></script> -->
+	<!-- <script src="sdk/YandexGamesSDK.js"></script> -->
+	
 	<!-- If canvas not supported by browser -->
 	<script>
 	// Detection of old browsers that do not support the canvas element

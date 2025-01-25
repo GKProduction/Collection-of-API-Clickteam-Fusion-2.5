@@ -1,5 +1,5 @@
-// Работа с YandexGames SDK в старых играх GKProduction v1.0
-"use strict";
+// Collection of API - YandexGames SDK
+// v1.0
 
 // ================ Начало ================
 // Инициализация SDK
