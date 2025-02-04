@@ -108,6 +108,11 @@ function NGStatusCheck() {
 
 // Разблокировать медаль
 function NGUnlockMedal(medal_id) {
+    if (NGIO.getMedal(medal_id).unlocked) {
+        console.log('🟧Medal already unlocked');
+        info_event = "NG: Medal already unlocked";
+        return
+    }
     NGIO.unlockMedal(medal_id, NGonMedalUnlocked);
 }
 function NGonMedalUnlocked(medal) {
@@ -146,8 +151,8 @@ function NGGetScores(board_id) {
         } else {
             var board_list = "";
             for (let i = 0; i < scores.length; i++) {
-                board_list = board_list + (i + 1) + ". " + scores[i].user.name + " - " + scores[i].formatted_value + "|";
-                console.log("🏆" + i + ". " + scores[i].user.name + " - " + scores[i].formatted_value);
+                board_list = board_list + (i + 1) + ";" + scores[i].user.name + ";" + scores[i].formatted_value + "|";
+                console.log("🏆" + (i + 1) + ". " + scores[i].user.name + " - " + scores[i].formatted_value);
             }
             console.log('🟧Рекорды: ' + board_list);
             console.log('🟧Scores received');
