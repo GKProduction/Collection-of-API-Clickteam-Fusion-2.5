@@ -1,33 +1,52 @@
-<!-- GKProduction Web Game Page Template v1.0.1 -->
+<!-- GKProduction Web Game Page Template v1.1 -->
 <!DOCTYPE html>
 <html>
 <head>
 	<!-- Metadata -->
-	<title>Collection of API Test</title> <!-- Tab Title -->
+	<title>Collection of API Test</title> <!-- Browser Tab Title -->
 	<link rel="shortcut icon" type="image/png" href="favicon.png"/> <!-- Icon -->
 	<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
 
+	<!-- Fonts -->
+	<link rel="stylesheet" href="fonts/fonts.css">
+
 	<!-- Page style -->
 	<style>
-	/*Fonts*/
-	/*@font-face {
-	font-family: 'FontName';
-	src: url('fonts/FontName.woff2') format('woff2'),
-	url('fonts/FontName.woff') format('woff');
-	font-weight: normal;
-	font-style: normal;
-	}*/
-	
-	/*Background*/
 	body {
-	background-color: #000000; 		/*color*/
-	background: url(background.png) repeat; 	/*image*/
-	background-size: 100%;
+	
+	/*Background*/	
+	background-color: #000000;
+	background: url(background.png) no-repeat;
+	background-size: cover;
+	background-attachment: fixed;
+	background-position: top right;
 
-	/* Misc */
-	text-align: center;
+	/* Position */
+	height: 100vh; /* 100% высота экрана браузера */
 	margin: 0;
-	padding: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	overflow: hidden;
+
+	/* Приложение ещё не загрузилось */
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.5s ease;
+	}
+
+	/* Приложение загрузилось. Отобразить */
+	body.loaded {
+	opacity: 1;
+	visibility: visible;
+	}
+
+	/* Рамка и тень у холста с игрой */
+	.MMFDiv {
+	border-style: solid;
+	border-color: black;
+	border-width: 2px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
 	}
 
 	* {
@@ -62,7 +81,7 @@
 	}, false);
 	</script>
 
-	<!-- Disable arrows keys for scrolling -->
+	<!-- Disable some keys -->
 	<script>
 	document.addEventListener('keydown', function(event) {
 	switch(event.key) {
@@ -70,6 +89,11 @@
 	case 'ArrowDown':
 	case 'ArrowLeft':
 	case 'ArrowRight':
+	case 'Escape':
+	case 'F1':
+	case 'F2':
+	case 'F3':
+	case 'F11':
 	event.preventDefault();
 	break;
 	default:
@@ -87,17 +111,25 @@
 	<!-- Получить язык браузера -->
 	<script src="scripts/GetLanguage.js"></script>
 	
-	<!-- Newgrounds API -->
-	<script src="scripts/NewgroundsAPI.js"></script>
-	<script src="scripts/NewgroundsSDK.js"></script>
+	<!-- Определение платформы игры -->
+	<script>
+	info_event = "Get platform";
+	info_data = ""; /* Сюда вписать название платформы */
+	</script>
 	
- 	<!-- VK Bridge SDK -->
- 	<script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
-	<script src="scripts/VKBridgeSDK.js"></script>
+		<!-- Удалите лишние скрипты -->
 	
-	<!-- Yandex Games SDK -->
-	<script src="/sdk.js"></script>
-	<script src="scripts/YandexGamesSDK.js"></script>
+		<!-- Newgrounds API -->
+		<script src="scripts/NewgroundsAPI.js"></script>
+		<script src="scripts/NewgroundsSDK.js"></script>
+		
+		<!-- VK Bridge SDK -->
+		<script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+		<script src="scripts/VKBridgeSDK.js"></script>
+		
+		<!-- Yandex Games SDK -->
+		<script src="/sdk.js"></script>
+		<script src="scripts/YandexGamesSDK.js"></script>
 	
 	<!-- If canvas not supported by browser -->
 	<script>
@@ -112,13 +144,11 @@
 </head>
 
 <body>
-	<!-- Canvas -->
-	<div style="display: inline-block; text-align: center">
+	<!-- Game Canvas -->
 	<!-- Your browser does not support Canvas -->
 	<canvas id="game">
 	Your browser does not support Canvas.
 	</canvas>
-	</div>
 
 	<!-- Run the game -->
 	<script>
@@ -131,6 +161,9 @@
 	// First parameter : name of the canvas element
 	// Second parameter : path to the cch file. Images and sounds must lay beside this file
 	new Runtime("game", "data/Collection of API.cch");
+	setTimeout(() => {
+	document.body.classList.add('loaded');
+	}, 1000);
 	}
 	// RUNTIMESTARTEND
 	</script>
