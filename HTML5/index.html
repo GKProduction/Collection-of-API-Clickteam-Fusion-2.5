@@ -1,4 +1,4 @@
-<!-- GKProduction Web Game Page Template v1.1 -->
+<!-- GKProduction Web Game Page Template v1.1.1 -->
 <!DOCTYPE html>
 <html>
 <head>
@@ -161,10 +161,10 @@
 	// First parameter : name of the canvas element
 	// Second parameter : path to the cch file. Images and sounds must lay beside this file
 	new Runtime("game", "data/Collection of API.cch");
-	setTimeout(() => {
-	document.body.classList.add('loaded');
-	}, 1000);
 	}
+	
+	function gameframeLoaded()
+	{document.body.classList.add('loaded');}
 	// RUNTIMESTARTEND
 	</script>
 </body>
